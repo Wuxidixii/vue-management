@@ -19,7 +19,11 @@
       <i :class="'el-icon-' + item.icon"></i>
       <span slot="title">{{ item.label }}</span>
     </el-menu-item>
-    <el-submenu v-for="item in hasChildren" :index="item.path" :key="item.path">
+    <el-submenu
+      v-for="item in hasChildren"
+      :index="item.label"
+      :key="item.path"
+    >
       <template slot="title">
         <i :class="'el-icon-' + item.icon"></i>
         <span slot="title">{{ item.label }}</span>
@@ -46,11 +50,11 @@ export default {
           url: "Home/Home",
         },
         {
-          path: "/mall",
-          name: "mall",
+          path: "/goods",
+          name: "goods",
           label: "商品管理",
           icon: "shopping-bag-1",
-          url: "MallManage/MallManage",
+          url: "GoodsManage/GoodsManage",
         },
         {
           path: "/user",
