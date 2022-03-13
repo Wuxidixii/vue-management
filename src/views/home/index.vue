@@ -50,100 +50,27 @@
 </template>
 
 <script>
+import { getData } from "@/api/data";
+
 export default {
   name: "Home",
   data() {
     return {
       userImg: require("@/assets/images/user.png"),
-      tableData: [
-        {
-          name: "小米",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-        {
-          name: "oppo",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-        {
-          name: "vivo",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-        {
-          name: "苹果",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-        {
-          name: "三星",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-        {
-          name: "魅族",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-      ],
-      tableLabel: {
-        name: "课程",
-        todayBuy: "今日购买",
-        monthBuy: "本月购买",
-        totalBuy: "总购买",
-      },
-      countData: [
-        {
-          key: 1,
-          name: "今日支付订单",
-          value: 1234,
-          icon: "success",
-          color: "#2ec7c9",
-        },
-        {
-          key: 2,
-          name: "今日收藏订单",
-          value: 1234,
-          icon: "star-on",
-          color: "#ffb980",
-        },
-        {
-          key: 3,
-          name: "今日未支付订单",
-          value: 1234,
-          icon: "s-goods",
-          color: "#5ab1ef",
-        },
-        {
-          key: 4,
-          name: "本月支付订单",
-          value: 1234,
-          icon: "success",
-          color: "#2ec7c9",
-        },
-        {
-          key: 5,
-          name: "本月收藏订单",
-          value: 1234,
-          icon: "star-on",
-          color: "#ffb980",
-        },
-        {
-          key: 6,
-          name: "本月未支付订单",
-          value: 1234,
-          icon: "s-goods",
-          color: "#5ab1ef",
-        },
-      ],
+      tableData: [],
+      tableLabel: {},
+      countData: [],
     };
+  },
+  mounted() {
+    getData().then((res) => {
+      const { code, data } = res.data;
+      if (code === 20000) {
+        this.tableData = data.tableData;
+        this.tableLabel = data.tableLabel;
+        this.countData = data.countData;
+      }
+    });
   },
 };
 </script>
