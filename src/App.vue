@@ -12,7 +12,9 @@ export default {
 
 <style>
 html,
-body {
+body,
+p,
+div {
   margin: 0;
   padding: 0;
 }
