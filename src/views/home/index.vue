@@ -1,6 +1,6 @@
 <template>
   <el-row class="home" :gutter="20">
-    <el-col :span="8" style="margin-top: 20px">
+    <el-col :span="8">
       <el-card>
         <div class="user">
           <img :src="userImg" />
@@ -26,7 +26,7 @@
         </el-table>
       </el-card>
     </el-col>
-    <el-col :span="16" style="margin-top: 20px">
+    <el-col :span="16">
       <div class="num">
         <el-card v-for="item in countData" :key="item.key">
           <i

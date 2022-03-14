@@ -6,7 +6,14 @@
         icon="el-icon-menu"
         size="mini"
       ></el-button>
-      <h3 style="color: #fff">首页</h3>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item
+          v-for="item in tabs"
+          :key="item.path"
+          :to="{ path: item.path }"
+          >{{ item.label }}</el-breadcrumb-item
+        >
+      </el-breadcrumb>
     </div>
     <div class="r-content">
       <el-dropdown trigger="click">
@@ -35,6 +42,11 @@ export default {
       this.$store.commit("collapseMenu");
     },
   },
+  computed: {
+    tabs() {
+      return this.$store.state.tab.tabsList;
+    },
+  },
 };
 </script>
 
@@ -49,6 +61,20 @@ header {
     align-items: center;
     .el-button {
       margin-right: 20px;
+    }
+    /deep/ .el-breadcrumb__inner.is-link {
+      color: #ccc;
+      font-weight: 400;
+    }
+    /deep/ .el-breadcrumb__inner.is-link:hover {
+      color: #ffd04b;
+    }
+    /deep/ .el-breadcrumb__item:last-child .el-breadcrumb__inner,
+    .el-breadcrumb__item:last-child .el-breadcrumb__inner a,
+    .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover,
+    .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+      color: #fff;
+      font-weight: 700;
     }
   }
   .r-content {

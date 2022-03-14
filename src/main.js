@@ -1,6 +1,27 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { Button, Container, Header, Main, Aside, Menu, Submenu, MenuItem, MenuItemGroup, Dropdown, DropdownMenu, DropdownItem, Row, Col, Card, Table, TableColumn } from 'element-ui'
+import {
+  Button,
+  Container,
+  Header,
+  Main,
+  Aside,
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Row,
+  Col,
+  Card,
+  Table,
+  TableColumn,
+  Breadcrumb,
+  BreadcrumbItem,
+  Tag
+} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import router from './router'
@@ -26,6 +47,9 @@ Vue.use(Col)
 Vue.use(Card)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Tag)
 
 Vue.prototype.$http = http
 

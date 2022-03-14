@@ -5,8 +5,6 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
-    @open="handleOpen"
-    @close="handleClose"
     :collapse="isCollapse"
   >
     <h3>{{ isCollapse ? "后台" : "商品后台管理系统" }}</h3>
@@ -29,7 +27,9 @@
         <span slot="title">{{ item.label }}</span>
       </template>
       <el-menu-item-group v-for="subItem in item.children" :key="subItem.path">
-        <el-menu-item :index="subItem.path">{{ subItem.label }}</el-menu-item>
+        <el-menu-item @click="clickMenu(subItem)" :index="subItem.path">{{
+          subItem.label
+        }}</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
@@ -86,16 +86,11 @@ export default {
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
     clickMenu(item) {
       this.$router.push({
         name: item.name,
       });
+      this.$store.commit("selectMenu", item);
     },
   },
   computed: {
