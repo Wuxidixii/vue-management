@@ -73,8 +73,9 @@ header {
     .el-breadcrumb__item:last-child .el-breadcrumb__inner a,
     .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover,
     .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
-      color: #fff;
-      font-weight: 700;
+      color: #ccc;
+      font-weight: 400;
+      cursor: pointer;
     }
   }
   .r-content {
