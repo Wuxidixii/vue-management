@@ -1,4 +1,4 @@
 import Mock from 'mockjs'
-import homrApi from './mockServeData/home'
+import homeApi from './mockServeData/home'
 
-Mock.mock('/home/getData', homrApi.getStatisticalData)
+Mock.mock('/home/getData', homeApi.getStatisticalData)
