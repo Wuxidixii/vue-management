@@ -28,7 +28,10 @@ import {
   Option,
   Switch,
   DatePicker,
-  Dialog
+  Dialog,
+  Pagination,
+  MessageBox,
+  Message
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -66,8 +69,11 @@ Vue.use(Option)
 Vue.use(Switch)
 Vue.use(DatePicker)
 Vue.use(Dialog)
+Vue.use(Pagination)
 
 Vue.prototype.$http = http
+Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$message = Message
 
 new Vue({
   render: h => h(App),
