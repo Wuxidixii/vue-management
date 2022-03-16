@@ -1,6 +1,6 @@
 <template>
   <div class="common-table">
-    <el-table :data="tableData" height="525px" stripe>
+    <el-table :data="tableData" height="475px" stripe>
       <el-table-column
         show-overflow-tooltip
         v-for="item in tableLabel"
@@ -23,10 +23,11 @@
     </el-table>
     <el-pagination
       class="pager"
+      background
       layout="prev, pager, next"
       :total="config.total"
       :current-page.sync="config.page"
-      :page-count="20"
+      @current-change="changePage"
     ></el-pagination>
   </div>
 </template>

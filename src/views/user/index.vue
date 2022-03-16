@@ -34,7 +34,7 @@
       :config="config"
       @edit="editUser"
       @del="delUser"
-      @changePage="getList"
+      @changePage="getList()"
     ></common-table>
   </div>
 </template>
@@ -69,17 +69,7 @@ export default {
         {
           model: "sex",
           label: "性别",
-          type: "select",
-          opts: [
-            {
-              label: "男",
-              value: "1",
-            },
-            {
-              label: "女",
-              value: "0",
-            },
-          ],
+          type: "input",
         },
         {
           model: "birth",
@@ -120,7 +110,7 @@ export default {
           label: "年龄",
         },
         {
-          prop: "sexLabel",
+          prop: "sex",
           label: "性别",
         },
         {
@@ -143,17 +133,32 @@ export default {
   methods: {
     confirm() {
       if (this.operateType === "edit") {
-        this.$http.post("/user/edit", this.operateForm).then((res) => {
-          console.log(res, "11111111");
+        this.$http.post("/user/edit", this.operateForm).then(() => {
           this.isShow = false;
           this.getList();
         });
       } else {
-        this.$http.post("/user/add", this.operateForm).then((res) => {
-          console.log(res, "22222222222");
-          this.isShow = false;
-          this.getList();
-        });
+        if (
+          this.operateForm.name.trim() === "" ||
+          this.operateForm.age.trim() === "" ||
+          this.operateForm.sex.trim() === "" ||
+          this.operateForm.birth.trim() === "" ||
+          this.operateForm.addr.trim() === ""
+        ) {
+          this.$message({
+            type: "warning",
+            message: "请输入完整信息",
+          });
+        } else {
+          this.$http.post("/user/add", this.operateForm).then(() => {
+            this.$message({
+              type: "success",
+              message: "添加成功",
+            });
+            this.isShow = false;
+            this.getList();
+          });
+        }
       }
     },
     addUser() {
@@ -173,14 +178,12 @@ export default {
       this.operateForm = row;
     },
     delUser(row) {
-      console.log("此操作将永久删除，是否继续？");
       this.$confirm("此操作将永久删除，是否继续？", "提示", {
         confirmButtonText: "确认",
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
         const id = row.id;
-        console.log(id);
         this.$http
           .post("/user/del", {
             id,
@@ -201,11 +204,7 @@ export default {
         page: this.config.page,
         name,
       }).then(({ data: res }) => {
-        console.log(res, "33333333");
-        this.tableData = res.List.map((item) => {
-          item.sexLabel = item.sex === 0 ? "女" : "男";
-          return item;
-        });
+        this.tableData = res.List;
         this.config.total = res.count;
         this.config.loading = false;
       });

@@ -17,17 +17,17 @@ function param2Obj(url) {
 }
 
 let List = []
-const count = 200
+const count = 400
 
 for (let i = 0; i < count; i++) {
   List.push(
     Mock.mock({
       id: Mock.Random.guid(),
       name: Mock.Random.cname(),
-      addr: Mock.mock('@count(true)'),
+      addr: Mock.mock('@county(true)'),
       'age|18-60': 1,
       birth: Mock.Random.date(),
-      sex: Mock.Random.integer(0, 1)
+      'sex|1': ['男', '女']
     })
   )
 }
@@ -40,7 +40,7 @@ export default {
    * @return {{code: number, count: number, data: *[]}}
    */
   getUserList: config => {
-    const { name, page = 1, limit = 20 } = param2Obj(config.url)
+    const { name, page = 1, limit = 10 } = param2Obj(config.url)
     console.log('name:' + name, 'page:' + page, '分页大小limit:' + limit);
     const mockList = List.filter(user => {
       if (name && user.name.indexOf(name) === -1 && user.addr.indexOf(name) === -1) return false
@@ -61,6 +61,7 @@ export default {
   createUser: config => {
     const { name, addr, age, birth, sex } = JSON.parse(config.body)
     console.log(JSON.parse(config.body));
+    console.log(sex);
     List.unshift({
       id: Mock.Random.guid(),
       name: name,
@@ -119,14 +120,13 @@ export default {
    */
   updateUser: config => {
     const { id, name, addr, age, birth, sex } = JSON.parse(config.body)
-    const sex_num = parseInt(sex)
     List.some(u => {
       if (u.id === id) {
         u.name = name
         u.addr = addr
         u.age = age
         u.birth = birth
-        u.sex = sex_num
+        u.sex = sex
         return true
       }
     })
