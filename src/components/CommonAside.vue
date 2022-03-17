@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    default-active="1-4-1"
+    :default-active="this.noChildren[0].name + ''"
     class="el-menu-vertical-demo"
     background-color="#545c64"
     text-color="#fff"
@@ -11,7 +11,7 @@
     <el-menu-item
       @click="clickMenu(item)"
       v-for="item in noChildren"
-      :index="item.path"
+      :index="item.name + ''"
       :key="item.path"
     >
       <i :class="'el-icon-' + item.icon"></i>
@@ -40,49 +40,7 @@ export default {
   name: "CommonAside",
   data() {
     return {
-      menu: [
-        {
-          path: "/",
-          name: "home",
-          label: "首页",
-          icon: "s-home",
-          url: "Home/Home",
-        },
-        {
-          path: "/goods",
-          name: "goods",
-          label: "商品管理",
-          icon: "shopping-bag-1",
-          url: "GoodsManage/GoodsManage",
-        },
-        {
-          path: "/user",
-          name: "user",
-          label: "用户管理",
-          icon: "user",
-          url: "UserManage/UserManage",
-        },
-        {
-          label: "其他",
-          icon: "location",
-          children: [
-            {
-              path: "/page1",
-              name: "page1",
-              label: "页面1",
-              icon: "setting",
-              url: "Other/PageOne",
-            },
-            {
-              path: "/page2",
-              name: "page2",
-              label: "页面2",
-              icon: "setting",
-              url: "Other/PageTwo",
-            },
-          ],
-        },
-      ],
+      menu: [],
     };
   },
   methods: {
@@ -95,13 +53,16 @@ export default {
   },
   computed: {
     noChildren() {
-      return this.menu.filter((item) => !item.children);
+      return this.asyncMenu.filter((item) => !item.children);
     },
     hasChildren() {
-      return this.menu.filter((item) => item.children);
+      return this.asyncMenu.filter((item) => item.children);
     },
     isCollapse() {
       return this.$store.state.tab.isCollapse;
+    },
+    asyncMenu() {
+      return this.$store.state.tab.menu;
     },
   },
 };

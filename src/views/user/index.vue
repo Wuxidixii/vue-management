@@ -175,7 +175,7 @@ export default {
     editUser(row) {
       this.operateType = "edit";
       this.isShow = true;
-      this.operateForm = row;
+      this.operateForm = JSON.parse(JSON.stringify(row));
     },
     delUser(row) {
       this.$confirm("此操作将永久删除，是否继续？", "提示", {

@@ -22,3 +22,11 @@ export const delUser = (id) => {
     id
   })
 }
+
+export const getMenu = (params) => {
+  return axios.request({
+    url: '/permission/getMenu',
+    method: 'post',
+    data: params
+  })
+}

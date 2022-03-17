@@ -8,35 +8,14 @@ const routes = [
     path: '/',
     redirect: '/home',
     name: 'Main',
-    component: () => import('../views/Main'),
-    children: [
-      {
-        path: '/home',
-        name: 'home',
-        component: () => import('@/views/home')
-      },
-      {
-        path: '/goods',
-        name: 'goods',
-        component: () => import('@/views/goods')
-      },
-      {
-        path: '/user',
-        name: 'user',
-        component: () => import('@/views/user')
-      },
-      {
-        path: '/page1',
-        name: 'page1',
-        component: () => import('@/views/other/pageOne')
-      },
-      {
-        path: '/page2',
-        name: 'page2',
-        component: () => import('@/views/other/pageTwo')
-      }
-    ]
-  }
+    component: () => import('../views/Main.vue'),
+    children: [],
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/index')
+  },
 ]
 
 const router = new VueRouter({

@@ -5,7 +5,7 @@
       v-for="(tag, index) in tags"
       :key="tag.name"
       :closable="tag.name !== 'home'"
-      :effect="$route.name === tag.name ? 'dark ' : 'plain '"
+      :effect="$route.name === tag.name ? 'dark' : 'plain'"
       @click="changeMenu(tag)"
       @close="handleClose(tag, index)"
       >{{ tag.label }}</el-tag
