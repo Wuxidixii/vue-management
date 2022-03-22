@@ -134,6 +134,10 @@ export default {
     confirm() {
       if (this.operateType === "edit") {
         this.$http.post("/user/edit", this.operateForm).then(() => {
+          this.$message({
+            type: "success",
+            message: "修改成功",
+          });
           this.isShow = false;
           this.getList();
         });

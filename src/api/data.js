@@ -30,3 +30,19 @@ export const getMenu = (params) => {
     data: params
   })
 }
+
+export const getGoods = (params) => {
+  return axios.request({
+    url: '/goods/getGoods',
+    method: 'get',
+    params
+  })
+}
+
+export const delGoods = (id) => {
+  return axios.request({
+    url: '/goods/del',
+    method: 'post',
+    id
+  })
+}
